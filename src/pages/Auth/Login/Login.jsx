@@ -1,19 +1,21 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import useAuth from '../../../assets/hooks/useAuth';
 import { auth } from '../../../Firebase/firebase.init';
 
 const Login = () => {
 
     const { signInUser, signInByGoogle } = useAuth()
-
+    const location = useLocation()
+    const navigate = useNavigate()
     const { register, handleSubmit, formState: { errors } } = useForm()
 
     const handleLogin = (data) => {
         signInUser(data.email, data.password)
             .then(result => {
                 console.log(result.user)
+                navigate(location?.state || '/')
             })
             .catch(error => {
                 console.log(error)
@@ -24,6 +26,7 @@ const Login = () => {
         signInByGoogle()
             .then(result => {
                 console.log(result.user)
+                navigate(location?.state || '/')
             })
             .catch(error => {
                 console.log(error)
@@ -86,7 +89,7 @@ const Login = () => {
                                 Login
                             </button>
                         </div>
-                        <div className="">New to our website? <Link to={'/register'} className='underline text-blue-400'>Register</Link> here</div>
+                        <div className="">New to our website? <Link state={location.state} to={'/register'} className='underline text-blue-400'>Register</Link> here</div>
                     </form>
 
                     {/* Alternative Login */}

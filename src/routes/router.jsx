@@ -4,6 +4,8 @@ import Home from "../pages/HomePage/Home/Home";
 import AuthLayout from "../Layout/AuthLayout/AuthLayout";
 import Register from "../pages/Auth/Register/Register";
 import Login from "../pages/Auth/Login/Login";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import Books from "../pages/Books/Books";
 
 export const router = createBrowserRouter([
     {
@@ -13,6 +15,10 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 Component: Home,
+            },
+            {
+                path: 'books',
+                element: <PrivateRoute><Books></Books></PrivateRoute>,
             },
         ]
     },

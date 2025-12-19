@@ -1,10 +1,12 @@
 
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import useAuth from '../../../assets/hooks/useAuth';
 
 const Register = () => {
-    const { registerUser, signInUser } = useAuth()
+    const { registerUser, signInByGoogle } = useAuth()
+    const location = useLocation()
+    const navigate = useNavigate()
     const { register, handleSubmit, formState: { errors } } = useForm()
 
     const handleRegister = (data) => {
@@ -12,6 +14,17 @@ const Register = () => {
         registerUser(data.email, data.password)
             .then(result => {
                 console.log(result.user)
+                navigate(location?.state || '/')
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+    const handleGoogleLogin = () => {
+        signInByGoogle()
+            .then(result => {
+                console.log(result.user)
+                navigate(location?.state || '/')
             })
             .catch(error => {
                 console.log(error)
@@ -104,7 +117,7 @@ const Register = () => {
 
                 {/* Google Login */}
                 <div className="flex justify-center">
-                    <button className="btn bg-white text-black border border-[#e5e5e5] w-full flex gap-2">
+                    <button onClick={handleGoogleLogin} className="btn bg-white text-black border border-[#e5e5e5] w-full flex gap-2">
                         <svg aria-label="Google logo" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                             <path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341" />
                             <path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57" />
