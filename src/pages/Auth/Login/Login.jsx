@@ -1,8 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useLocation, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../../assets/hooks/useAuth';
-import { auth } from '../../../Firebase/firebase.init';
 
 const Login = () => {
 
