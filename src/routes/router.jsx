@@ -11,6 +11,8 @@ import MyOrders from "../pages/Dashbaord/MYOrders";
 import MyProfile from "../pages/Dashbaord/MyProfile";
 import Invoices from "../pages/Dashbaord/Invoices";
 import Payment from "../pages/Dashbaord/Payment/Payment";
+import PaymentSuccess from "../PaymentSuccess";
+import PaymentCancelled from "../PaymentCancelled";
 
 
 export const router = createBrowserRouter([
@@ -60,6 +62,14 @@ export const router = createBrowserRouter([
             {
                 path: 'payment/:orderId',
                 Component: Payment,
+            },
+            {
+                path: 'payment-success',
+                Component: PaymentSuccess,
+            },
+            {
+                path: 'payment-cancelled',
+                Component: PaymentCancelled,
             }
         ]
     }
