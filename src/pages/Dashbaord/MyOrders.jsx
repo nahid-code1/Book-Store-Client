@@ -14,8 +14,10 @@ const MyOrders = () => {
         queryFn: async () => {
             const res = await axiosSecure.get(`/orders?email=${user.email}`)
             return res.data
+
         }
     })
+    console.log("Fetching orders for:", user.email)
     const handleOrderDelete = id => {
         console.log(id)
         Swal.fire({
@@ -45,43 +47,79 @@ const MyOrders = () => {
     }
     return (
 
-        <div className="max-w-4xl mx-auto mt-8">
+        <div className="max-w-4xl mx-auto mt-8 px-2 md:px-0">
             <div className="card bg-base-100 shadow-md border">
                 <div className="card-body">
-                    <h2 className="card-title text-2xl md:my-4 flex justify-center underline text-yellow-500">My Orders</h2>
+                    <h2 className="card-title text-2xl md:my-4 flex justify-center underline text-yellow-500">
+                        My Orders
+                    </h2>
 
-                    {/* Table header r */}
-                    <div className="grid grid-cols-4 font-semibold border-b pb-2 text-lg">
+                    <div className="hidden md:grid grid-cols-4 font-semibold border-b pb-2 text-lg">
                         <span>Book Title</span>
                         <span>Order Date</span>
                         <span>Status</span>
                         <span className="text-right">Action</span>
                     </div>
 
-                    {orders.map(order => <div key={order._id} className="grid grid-cols-4 items-center py-3 text-md">
-                        <span>{order.bookTitle}</span>
-                        <span>  {new Date(order.createdAt).toLocaleDateString('en-GB')}</span>
-                        <span className="badge badge-warning badge-md">Pending</span>
+                    {orders.map(order => (
+                        <div
+                            key={order._id}
+                            className="grid grid-cols-1 md:grid-cols-4 gap-3 md:gap-0 items-start md:items-center py-4 border-b"
+                        >
+                            {/* Book title */}
+                            <div>
+                                <p className="md:hidden font-semibold text-sm text-gray-500">Book</p>
+                                <span>{order.bookTitle}</span>
+                            </div>
 
-                        <div className="flex gap-2 justify-end items-center">
-                            <button onClick={() => handleOrderDelete(order._id)} className="btn btn-sm btn-outline btn-error">
-                                Cancel
-                            </button>
-                            {
-                                order.paymentStatus === 'paid' ?
-                                    <div className="badge badge-success badge-md">
-                                        <svg className="size-[1em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="currentColor" strokeLinejoin="miter" strokeLinecap="butt"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeLinecap="square" stroke-miterlimit="10" strokeWidth="2"></circle><polyline points="7 13 10 16 17 8" fill="none" stroke="currentColor" strokeLinecap="square" stroke-miterlimit="10" strokeWidth="2"></polyline></g></svg>
+                            {/* Date */}
+                            <div>
+                                <p className="md:hidden font-semibold text-sm text-gray-500">Date</p>
+                                <span>{new Date(order.createdAt).toLocaleDateString('en-GB')}</span>
+                            </div>
+
+                            {/* Status */}
+                            <div>
+                                <p className="md:hidden font-semibold text-sm text-gray-500">Status</p>
+                                <span className="badge badge-warning badge-md">Pending</span>
+                            </div>
+
+                            {/* Actions */}
+                            <div className="flex flex-wrap gap-2 md:justify-end">
+                                <button
+                                    onClick={() => handleOrderDelete(order._id)}
+                                    className="btn btn-sm btn-outline btn-error"
+                                >
+                                    Cancel
+                                </button>
+
+                                {order.paymentStatus === 'paid' ? (
+                                    <div className="badge badge-success badge-md flex items-center gap-1">
+                                        <svg
+                                            className="size-[1em]"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="2" />
+                                            <polyline points="7 13 10 16 17 8" fill="none" stroke="currentColor" strokeWidth="2" />
+                                        </svg>
                                         Paid
-                                    </div> :
-                                    <Link to={`/dashboard/payment/${order._id}`} className='btn btn-secondary btn-sm'>Pay Now</Link>
-
-                            }
+                                    </div>
+                                ) : (
+                                    <Link
+                                        to={`/dashboard/payment/${order._id}`}
+                                        className="btn btn-secondary btn-sm"
+                                    >
+                                        Pay Now
+                                    </Link>
+                                )}
+                            </div>
                         </div>
-                    </div>)}
-
+                    ))}
                 </div>
             </div>
         </div>
+
     );
 };
 

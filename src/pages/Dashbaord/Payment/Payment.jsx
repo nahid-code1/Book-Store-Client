@@ -33,12 +33,54 @@ const Payment = () => {
     }
 
     return (
-        <div className="p-6">
-            <h2 className="text-xl font-semibold">
-                Pay {order.price} here for <span className="text-primary">{order?.bookTitle}</span>
-            </h2>
-            <button onClick={handlePayment} className='btn btn-secondary'>Pay Now</button>
+        <div className="min-h-[70vh] flex items-center justify-center px-4">
+            <div className="w-full max-w-md">
+                <div className="card bg-base-100 shadow-xl border">
+                    <div className="card-body space-y-4">
+
+                        <h2 className="text-center text-xl md:text-2xl font-semibold">
+                            Complete Your Payment
+                        </h2>
+
+                        <div className="divider"></div>
+
+                        <div className="space-y-2 text-sm md:text-base">
+                            <div className="flex justify-between">
+                                <span className="font-medium text-gray-500">Book</span>
+                                <span className="font-semibold text-right">
+                                    {order?.bookTitle}
+                                </span>
+                            </div>
+
+                            <div className="flex justify-between">
+                                <span className="font-medium text-gray-500">Price</span>
+                                <span className="font-semibold text-primary">
+                                    ৳ {order.price}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div className="divider"></div>
+
+                        <button
+                            onClick={handlePayment}
+                            className="btn btn-secondary w-full"
+                        >
+                            Pay Now
+                        </button>
+
+                        <Link
+                            to="/dashboard/my-orders"
+                            className="text-center text-sm text-gray-500 hover:underline"
+                        >
+                            Back to My Orders
+                        </Link>
+
+                    </div>
+                </div>
+            </div>
         </div>
+
     );
 };
 
