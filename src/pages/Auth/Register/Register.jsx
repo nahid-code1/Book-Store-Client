@@ -2,11 +2,13 @@
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../../assets/hooks/useAuth';
+import useAxiosSecure from '../../../assets/hooks/useAxiosSecure';
 
 const Register = () => {
     const { registerUser, signInByGoogle } = useAuth()
     const location = useLocation()
     const navigate = useNavigate()
+    const axiosSecure = useAxiosSecure()
     const { register, handleSubmit, formState: { errors } } = useForm()
 
     const handleRegister = (data) => {
@@ -15,6 +17,17 @@ const Register = () => {
             .then(result => {
                 console.log(result.user)
                 navigate(location?.state || '/')
+                const userInfo = {
+                    email: data.email,
+                    displayName: data.name,
+                    // photoURL: data.photoURL,
+                }
+                axiosSecure.post('/users', userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            console.log('user created in the data base')
+                        }
+                    })
             })
             .catch(error => {
                 console.log(error)
@@ -24,7 +37,17 @@ const Register = () => {
         signInByGoogle()
             .then(result => {
                 console.log(result.user)
-                navigate(location?.state || '/')
+
+                const userInfo = {
+                    email: result.user.email,
+                    displayName: result.user.displayName,
+                    // photoURL: data.photoURL,
+                }
+                axiosSecure.post('/users', userInfo)
+                    .then(res => {
+                        console.log('user data has been stored', res.data)
+                        navigate(location?.state || '/')
+                    })
             })
             .catch(error => {
                 console.log(error)
@@ -82,7 +105,7 @@ const Register = () => {
                             required
                         />
                         {
-                            errors.password?.type === 'pattern' && <p className='text-red-400'>Password must have uppercase, lowercase, number,<br /> special character and be at least 8 characters</p>
+                            errors.password?.type === 'pattern' && <p className='text-red-400'>Password must have uppercase, lowercase, number,<br /> special character and be at least 6 characters</p>
                         }
                         <label className="label">
                             <span className="label-text-alt">
