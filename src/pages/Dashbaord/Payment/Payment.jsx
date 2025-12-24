@@ -20,17 +20,34 @@ const Payment = () => {
         return <div className="text-center mt-10">Loading...</div>;
     }
 
+
+    if (!order) {
+        return <div className="text-center mt-10 text-red-500">Order not found</div>;
+    }
     const handlePayment = async () => {
-        const paymentInfo = {
-            price: order.price,
-            orderId: order._id,
-            userEmail: order.userEmail,
-            bookTitle: order.bookTitle
+        if (!order?.price || !order?._id || !order?.bookTitle || !order?.userEmail) {
+            alert("Order data incomplete.");
+            return;
         }
 
-        const res = await axiosSecure.post('/create-checkout-session', paymentInfo)
-        window.location.href = res.data.url
-    }
+        try {
+            const paymentInfo = {
+                price: Number(order.price), // ensure it's a number
+                orderId: order._id,
+                userEmail: order.userEmail,
+                bookTitle: order.bookTitle
+            };
+
+            const res = await axiosSecure.post('/create-checkout-session', paymentInfo);
+            window.location.href = res.data.url;
+        } catch (err) {
+            console.error('Payment creation failed:', err.response?.data || err.message);
+            alert('Payment creation failed. Check console for details.');
+        }
+    };
+
+
+
 
     return (
         <div className="min-h-[70vh] flex items-center justify-center px-4">
@@ -55,8 +72,9 @@ const Payment = () => {
                             <div className="flex justify-between">
                                 <span className="font-medium text-gray-500">Price</span>
                                 <span className="font-semibold text-primary">
-                                    ৳ {order.price}
+                                    ৳ {order?.price}
                                 </span>
+
                             </div>
                         </div>
 

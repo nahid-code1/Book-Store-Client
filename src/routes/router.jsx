@@ -13,6 +13,14 @@ import Invoices from "../pages/Dashbaord/Invoices";
 import Payment from "../pages/Dashbaord/Payment/Payment";
 import PaymentSuccess from "../PaymentSuccess";
 import PaymentCancelled from "../PaymentCancelled";
+import Users from "../pages/Dashbaord/Users";
+import AdminRoute from "./Admin Route/AdminRoute";
+import AllBooks from "../pages/Dashbaord/AllBooks";
+import LibrarianRoute from "./Admin Route/LibrarianRoute";
+import AddBook from "../pages/Dashbaord/AddBook";
+import Orders from "../pages/Dashbaord/Orders";
+import MyBooks from "../pages/Dashbaord/MyBooks";
+import BookDetails from "../pages/Books/BookDetails";
 
 
 export const router = createBrowserRouter([
@@ -26,7 +34,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'books',
-                element: <PrivateRoute><Books></Books></PrivateRoute>,
+                element: <PrivateRoute><Books /></PrivateRoute>,
+            },
+            {
+                path: 'books/:id',
+                element: <PrivateRoute><BookDetails /></PrivateRoute>,
             },
         ]
     },
@@ -45,7 +57,7 @@ export const router = createBrowserRouter([
     },
     {
         path: 'dashboard',
-        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
         children: [
             {
                 path: 'my-orders',
@@ -58,6 +70,26 @@ export const router = createBrowserRouter([
             {
                 path: 'invoices',
                 Component: Invoices,
+            },
+            {
+                path: 'users',
+                element: <AdminRoute><Users /></AdminRoute>
+            },
+            {
+                path: 'all-books',
+                element: <AdminRoute><AllBooks /></AdminRoute>
+            },
+            {
+                path: 'add-books',
+                element: <LibrarianRoute><AddBook /></LibrarianRoute>
+            },
+            {
+                path: 'orders',
+                element: <LibrarianRoute><Orders /></LibrarianRoute>
+            },
+            {
+                path: 'my-books',
+                element: <LibrarianRoute><MyBooks /></LibrarianRoute>
             },
             {
                 path: 'payment/:orderId',

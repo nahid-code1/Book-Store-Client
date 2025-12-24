@@ -86,12 +86,20 @@ const MyOrders = () => {
 
                             {/* Actions */}
                             <div className="flex flex-wrap gap-2 md:justify-end">
-                                <button
-                                    onClick={() => handleOrderDelete(order._id)}
-                                    className="btn btn-sm btn-outline btn-error"
-                                >
-                                    Cancel
-                                </button>
+                                {order.paymentStatus === 'paid' ?
+                                    <button
+                                        className="btn btn-sm btn-disabled btn-outline btn-error"
+                                    >
+                                        Cancel
+                                    </button>
+                                    :
+                                    <button
+                                        onClick={() => handleOrderDelete(order._id)}
+                                        className="btn btn-sm btn-outline btn-error"
+                                    >
+                                        Cancel
+                                    </button>
+                                }
 
                                 {order.paymentStatus === 'paid' ? (
                                     <div className="badge badge-success badge-md flex items-center gap-1">

@@ -4,16 +4,16 @@ import useAxiosSecure from '../../assets/hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 
 const Invoices = () => {
-    const { user } = useAuth()
-    const axiosSecure = useAxiosSecure()
+    const { user } = useAuth();
+    const axiosSecure = useAxiosSecure();
 
     const { data: payments = [] } = useQuery({
         queryKey: ['payments', user.email],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/payments?email=${user.email}`)
-            return res.data
+            const res = await axiosSecure.get(`/payments?email=${user.email}`);
+            return res.data;
         }
-    })
+    });
 
     return (
         <div className="max-w-4xl mx-auto p-4">

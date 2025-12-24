@@ -67,9 +67,11 @@ const Register = () => {
                         <input
                             type="text"
                             placeholder="Enter your full name"
+                            {...register('name')}
                             className="input input-bordered w-full"
                             required
                         />
+
                     </div>
 
                     {/* Email */}
