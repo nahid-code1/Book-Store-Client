@@ -44,14 +44,14 @@ const Banner = () => {
                         </div>
                     </div>
                 </SwiperSlide>
-
+                {/*  */}
                 {/* Slide 2 */}
                 <SwiperSlide>
                     <div className="hero h-full bg-base-100">
                         <div className="hero-content text-center">
                             <div>
                                 <h1 className="text-4xl font-bold">
-                                    Doorstep Book Courier
+                                    Doorstep Book Courier.
                                 </h1>
                                 <p className="py-4 text-base-content/80">
                                     From bookstores to your home — hassle-free delivery.
