@@ -54,7 +54,7 @@ const Banner = () => {
                                     Doorstep Book Courier.
                                 </h1>
                                 <p className="py-4 text-base-content/80">
-                                    From bookstores to your home — hassle-free delivery.
+                                    From bookstores to your home hassle-free delivery.
                                 </p>
                                 <button className="btn btn-secondary">
                                     Send a Book
