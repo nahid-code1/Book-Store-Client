@@ -11,6 +11,15 @@ import {
 
 const queryClient = new QueryClient()
 
+// Initialize theme on app start
+const initializeTheme = () => {
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+};
+
+// Initialize theme before rendering
+initializeTheme();
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>

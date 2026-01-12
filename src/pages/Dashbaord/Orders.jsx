@@ -49,7 +49,7 @@ const Orders = () => {
                             <td>{order.bookTitle}</td>
                             <td>{order.userEmail}</td>
 
-                            {/* STATUS DROPDOWN */}
+                     
                             <td>
                                 <select
                                     className="select select-sm select-bordered"
@@ -71,7 +71,7 @@ const Orders = () => {
                                 </span>
                             </td>
 
-                            {/* ACTIONS */}
+       
                             <td>
                                 {order.orderStatus !== 'delivered' && (
                                     <button

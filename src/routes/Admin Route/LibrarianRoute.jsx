@@ -1,6 +1,7 @@
 import React from 'react';
 import useAuth from '../../assets/hooks/useAuth';
 import useRole from '../../assets/hooks/useRole';
+import Forbidden from '../../pages/Forbidden/Forbidden';
 
 const LibrarianRoute = ({ children }) => {
     const { user, loading } = useAuth()

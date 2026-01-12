@@ -14,7 +14,7 @@ const Users = () => {
         }
     });
 
-    // ---------- ADMIN ----------
+
     const handleMakeAdmin = user => {
         axiosSecure.patch(`/users/${user._id}`, { role: 'admin' })
             .then(res => {
@@ -45,7 +45,7 @@ const Users = () => {
             });
     };
 
-    // ---------- LIBRARIAN ----------
+
     const handleMakeLibrarian = user => {
         axiosSecure.patch(`/users/${user._id}`, { role: 'librarian' })
             .then(res => {

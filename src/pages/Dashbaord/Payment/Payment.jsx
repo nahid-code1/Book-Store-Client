@@ -32,7 +32,7 @@ const Payment = () => {
 
         try {
             const paymentInfo = {
-                price: Number(order.price), // ensure it's a number
+                price: Number(order.price), 
                 orderId: order._id,
                 userEmail: order.userEmail,
                 bookTitle: order.bookTitle

@@ -6,7 +6,7 @@ import useAuth from '../../assets/hooks/useAuth';
 const AddBook = () => {
     const axiosSecure = useAxiosSecure()
     const { user } = useAuth()
-    console.log('user from add book', user)
+    // console.log('user from add book', user)
     const [form, setForm] = useState({
         title: '',
         author: '',

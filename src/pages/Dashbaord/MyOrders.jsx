@@ -19,7 +19,7 @@ const MyOrders = () => {
     })
     console.log("Fetching orders for:", user.email)
     const handleOrderDelete = id => {
-        console.log(id)
+        // console.log(id)
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",

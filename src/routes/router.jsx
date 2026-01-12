@@ -7,7 +7,7 @@ import Login from "../pages/Auth/Login/Login";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import Books from "../pages/Books/Books";
 import DashboardLayout from "../Layout/DashboardLayout";
-import MyOrders from "../pages/Dashbaord/MYOrders";
+import MyOrders from "../pages/Dashbaord/MyOrders";
 import MyProfile from "../pages/Dashbaord/MyProfile";
 import Invoices from "../pages/Dashbaord/Invoices";
 import Payment from "../pages/Dashbaord/Payment/Payment";
@@ -21,6 +21,9 @@ import AddBook from "../pages/Dashbaord/AddBook";
 import Orders from "../pages/Dashbaord/Orders";
 import MyBooks from "../pages/Dashbaord/MyBooks";
 import BookDetails from "../pages/Books/BookDetails";
+import About from "../pages/About/About";
+import Contact from "../pages/Contact/Contact";
+import DashboardOverview from "../pages/Dashbaord/DashboardOverview";
 
 
 export const router = createBrowserRouter([
@@ -34,11 +37,19 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'books',
-                element: <PrivateRoute><Books /></PrivateRoute>,
+                element: <Books />,
             },
             {
                 path: 'books/:id',
                 element: <PrivateRoute><BookDetails /></PrivateRoute>,
+            },
+            {
+                path: 'about',
+                Component: About,
+            },
+            {
+                path: 'contact',
+                Component: Contact,
             },
         ]
     },
@@ -59,6 +70,10 @@ export const router = createBrowserRouter([
         path: 'dashboard',
         element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
         children: [
+            {
+                index: true,
+                Component: DashboardOverview,
+            },
             {
                 path: 'my-orders',
                 Component: MyOrders,
