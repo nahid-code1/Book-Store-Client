@@ -4,8 +4,8 @@ A comprehensive book delivery and management platform built with React, Firebase
 
 ## 🚀 Live Demo
 
-- **Frontend**: [Book Courier Live](https://your-deployment-url.com)
-- **Backend API**: [API Documentation](https://book-courier-server-woad.vercel.app)
+- **Frontend**: [Book Courier Live](https://assingnmnet11.web.app/)
+- **Backend API**: [API Documentation](https://github.com/nahid-code1/Assignment-11-PH-server-.git)
 
 ## ✨ Features
 
